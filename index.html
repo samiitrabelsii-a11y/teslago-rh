@@ -7,49 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Chosen Palette: Corporate Construction (Navy, Concrete Grey, Signal Orange, Safe Green) -->
-    <!-- Application Structure Plan: 
-         1. Hero Section: Introduction and core philosophy (Responsibility).
-         2. Interactive Daily Flow: A timeline interaction clarifying exactly when to click buttons (and when NOT to).
-         3. The Logic Simulator: An interactive calculator allowing users to input hours/scenarios to understand "Absent" vs "Permission" vs "Valid".
-         4. Bonus & Penalty System: Visual cards explaining the "Rule of 3" and Bonus acquisition.
-         5. AI Assistant Section: Integrated Gemini-powered chat to answer specific rule questions and generate text.
-         6. Reporting & Validation: Comparison of Monthly vs Annual impacts using a tabbed view.
-    -->
-    <!-- Visualization & Content Choices:
-         ... previous choices ...
-         5. AI Assistant: Chat interface with predefined prompt context. Goal: Instant answers to edge cases.
-    -->
     <style>
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #334155; }
-        .chart-container { 
-            position: relative; 
-            width: 100%; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            height: 300px; 
-            max-height: 400px; 
-        }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 300px; max-height: 400px; }
         .step-content { transition: all 0.3s ease-in-out; }
         .active-step { border-left-color: #0f172a; background-color: #f1f5f9; }
         .slider-thumb::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: #0f172a; border-radius: 50%; cursor: pointer; }
-        
-        /* Loading animation for AI */
-        .typing-dot {
-            animation: typing 1.4s infinite ease-in-out both;
-            height: 6px;
-            width: 6px;
-            border-radius: 50%;
-            background-color: #cbd5e1;
-            display: inline-block;
-            margin: 0 1px;
-        }
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; height: 6px; width: 6px; border-radius: 50%; background-color: #cbd5e1; display: inline-block; margin: 0 1px; }
         .typing-dot:nth-child(1) { animation-delay: -0.32s; }
         .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -106,60 +73,40 @@
         </div>
     </header>
 
-    <!-- SECTION 1: DAILY FLOW (INTERACTIVE) -->
+    <!-- SECTION 1: DAILY FLOW -->
     <section id="daily-flow" class="py-16 container mx-auto px-4 max-w-5xl">
         <div class="mb-10 text-center">
             <h2 class="text-2xl font-bold text-slate-900 mb-2">Le Rituel Quotidien</h2>
             <p class="text-slate-600">Cliquez sur chaque étape pour comprendre quand utiliser l'application.</p>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <!-- Left: The Steps -->
             <div class="space-y-4">
                 <div class="step-card bg-white p-5 rounded-lg shadow-sm border-l-4 border-slate-200 cursor-pointer hover:bg-slate-50 transition" onclick="showStep(1)">
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold">1</div>
-                            <h3 class="font-bold text-slate-800">Matin : Prise de Poste</h3>
-                        </div>
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold">1</div><h3 class="font-bold text-slate-800">Matin : Prise de Poste</h3></div>
                         <i class="fas fa-chevron-right text-slate-300"></i>
                     </div>
                 </div>
-
                 <div class="step-card bg-white p-5 rounded-lg shadow-sm border-l-4 border-slate-200 cursor-pointer hover:bg-slate-50 transition" onclick="showStep(2)">
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold">2</div>
-                            <h3 class="font-bold text-slate-800">Midi : Pause Déjeuner</h3>
-                        </div>
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold">2</div><h3 class="font-bold text-slate-800">Midi : Pause Déjeuner</h3></div>
                         <i class="fas fa-chevron-right text-slate-300"></i>
                     </div>
                 </div>
-
                 <div class="step-card bg-white p-5 rounded-lg shadow-sm border-l-4 border-slate-200 cursor-pointer hover:bg-slate-50 transition" onclick="showStep(3)">
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold">3</div>
-                            <h3 class="font-bold text-slate-800">Sortie Personnelle</h3>
-                        </div>
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold">3</div><h3 class="font-bold text-slate-800">Sortie Personnelle</h3></div>
                         <i class="fas fa-chevron-right text-slate-300"></i>
                     </div>
                 </div>
-
                 <div class="step-card bg-white p-5 rounded-lg shadow-sm border-l-4 border-slate-200 cursor-pointer hover:bg-slate-50 transition" onclick="showStep(4)">
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold">4</div>
-                            <h3 class="font-bold text-slate-800">Soir : Fin de Journée</h3>
-                        </div>
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold">4</div><h3 class="font-bold text-slate-800">Soir : Fin de Journée</h3></div>
                         <i class="fas fa-chevron-right text-slate-300"></i>
                     </div>
                 </div>
             </div>
-
-            <!-- Right: The Detail View -->
             <div id="step-detail-container" class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 h-full flex flex-col justify-center">
-                <!-- Content injected via JS -->
                 <div class="text-center text-slate-400">
                     <i class="fas fa-hand-pointer text-4xl mb-4"></i>
                     <p>Sélectionnez une étape à gauche pour voir les consignes.</p>
@@ -168,17 +115,15 @@
         </div>
     </section>
 
-    <!-- SECTION 2: LOGIC SIMULATOR -->
+    <!-- SECTION 2: SIMULATOR -->
     <section id="simulator" class="bg-slate-900 text-white py-16">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="mb-10 text-center">
                 <span class="text-orange-400 font-bold tracking-wider text-xs uppercase">Comprendre l'Algorithme</span>
                 <h2 class="text-3xl font-bold mt-2">Simulateur de Journée</h2>
-                <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Le système calcule votre statut automatiquement selon vos heures. Testez différents scénarios pour comprendre les seuils (4h, 6h) et éviter les absences.</p>
+                <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Le système calcule votre statut automatiquement selon vos heures. Testez différents scénarios.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Controls -->
                 <div class="lg:col-span-1 bg-slate-800 p-6 rounded-xl border border-slate-700">
                     <div class="mb-6">
                         <label class="block text-sm font-bold mb-2 text-slate-300">Régime Contrat</label>
@@ -187,60 +132,26 @@
                             <option value="part">Mi-Temps (Obj: 4h)</option>
                         </select>
                     </div>
-
                     <div class="mb-8">
-                        <label class="block text-sm font-bold mb-2 text-slate-300">
-                            Heures Travaillées : <span id="sim-hours-display" class="text-orange-400">8.0</span>h
-                        </label>
+                        <label class="block text-sm font-bold mb-2 text-slate-300">Heures Travaillées : <span id="sim-hours-display" class="text-orange-400">8.0</span>h</label>
                         <input type="range" id="sim-hours" min="0" max="12" step="0.5" value="8" class="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer slider-thumb" oninput="updateSimulation()">
-                        <div class="flex justify-between text-xs text-slate-500 mt-1">
-                            <span>0h</span>
-                            <span>4h</span>
-                            <span>6h</span>
-                            <span>8h</span>
-                            <span>12h</span>
-                        </div>
+                        <div class="flex justify-between text-xs text-slate-500 mt-1"><span>0h</span><span>4h</span><span>6h</span><span>8h</span><span>12h</span></div>
                     </div>
-
                     <div class="mb-4 space-y-3">
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="sim-pause-perso" class="w-5 h-5 rounded bg-slate-700 border-slate-500 text-orange-500" onchange="updateSimulation()">
-                            <span class="text-sm">Pause Perso Pointée ?</span>
-                        </label>
-                        <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="sim-weekend" class="w-5 h-5 rounded bg-slate-700 border-slate-500 text-orange-500" onchange="updateSimulation()">
-                            <span class="text-sm">Dimanche ou Férié ?</span>
-                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" id="sim-pause-perso" class="w-5 h-5 rounded bg-slate-700 border-slate-500 text-orange-500" onchange="updateSimulation()"><span class="text-sm">Pause Perso Pointée ?</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer"><input type="checkbox" id="sim-weekend" class="w-5 h-5 rounded bg-slate-700 border-slate-500 text-orange-500" onchange="updateSimulation()"><span class="text-sm">Dimanche ou Férié ?</span></label>
                     </div>
                 </div>
-
-                <!-- Visualization -->
                 <div class="lg:col-span-2 bg-white rounded-xl text-slate-900 p-6 flex flex-col items-center justify-center relative overflow-hidden">
-                    <div id="sim-result-badge" class="absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-gray-200 text-gray-600">
-                        SIMULATION
-                    </div>
-
+                    <div id="sim-result-badge" class="absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-gray-200 text-gray-600">SIMULATION</div>
                     <div class="text-center w-full max-w-md">
-                        <div id="sim-icon" class="text-6xl mb-4 text-green-500 transition-all duration-300 transform scale-100">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                        <div id="sim-icon" class="text-6xl mb-4 text-green-500 transition-all duration-300 transform scale-100"><i class="fas fa-check-circle"></i></div>
                         <h3 id="sim-status-title" class="text-2xl font-bold mb-2">Journée Validée</h3>
                         <p id="sim-status-desc" class="text-slate-600 mb-6">Vous avez atteint votre objectif journalier.</p>
-                        
-                        <!-- Dynamic Details -->
                         <div class="bg-slate-50 rounded-lg p-4 border border-slate-100 w-full">
-                            <div class="flex justify-between items-center mb-2 border-b border-slate-200 pb-2">
-                                <span class="text-sm text-slate-500">Qualification</span>
-                                <span id="sim-qualif" class="font-bold text-slate-800">PRÉSENCE NORMALE</span>
-                            </div>
-                            <div class="flex justify-between items-center mb-2 border-b border-slate-200 pb-2">
-                                <span class="text-sm text-slate-500">Impact Paie</span>
-                                <span id="sim-pay" class="font-bold text-green-600">100% Payé</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-slate-500">Impact Congé</span>
-                                <span id="sim-bonus" class="font-bold text-slate-800">-</span>
-                            </div>
+                            <div class="flex justify-between items-center mb-2 border-b border-slate-200 pb-2"><span class="text-sm text-slate-500">Qualification</span><span id="sim-qualif" class="font-bold text-slate-800">PRÉSENCE NORMALE</span></div>
+                            <div class="flex justify-between items-center mb-2 border-b border-slate-200 pb-2"><span class="text-sm text-slate-500">Impact Paie</span><span id="sim-pay" class="font-bold text-green-600">100% Payé</span></div>
+                            <div class="flex justify-between items-center"><span class="text-sm text-slate-500">Impact Congé</span><span id="sim-bonus" class="font-bold text-slate-800">-</span></div>
                         </div>
                     </div>
                 </div>
@@ -248,261 +159,72 @@
         </div>
     </section>
 
-    <!-- SECTION 3: RULES & BONUSES -->
+    <!-- SECTION 3: BONUSES -->
     <section id="bonuses" class="py-16 container mx-auto px-4 max-w-5xl">
-        <div class="mb-12 text-center">
-            <h2 class="text-3xl font-bold text-slate-900">Le Système de Mérite</h2>
-            <p class="text-slate-600 max-w-3xl mx-auto mt-2">
-                Le système sanctionne les abus mais récompense généreusement l'effort. 
-                Voici comment fonctionne le mécanisme de bonus et de pénalités.
-            </p>
-        </div>
-
+        <div class="mb-12 text-center"><h2 class="text-3xl font-bold text-slate-900">Le Système de Mérite</h2></div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <!-- PENALTIES: RULE OF 3 -->
             <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="bg-red-100 p-2 rounded-lg text-red-600"><i class="fas fa-gavel"></i></div>
-                    <h3 class="font-bold text-lg">La Règle des 3 Permissions</h3>
-                </div>
-                <p class="text-sm text-slate-600 mb-6 text-justify">
-                    Le système tolère les petits imprévus. Cependant, l'accumulation de retards ou de départs anticipés (moins de 6h de travail) déclenche une sanction automatique.
-                </p>
-                
-                <!-- Visualizer -->
+                <div class="flex items-center gap-3 mb-4"><div class="bg-red-100 p-2 rounded-lg text-red-600"><i class="fas fa-gavel"></i></div><h3 class="font-bold text-lg">La Règle des 3 Permissions</h3></div>
+                <p class="text-sm text-slate-600 mb-6 text-justify">Accumulation de retards ou de départs anticipés (moins de 6h de travail) déclenche une sanction automatique.</p>
                 <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                    <div class="flex justify-between text-xs font-bold text-slate-400 mb-2">
-                        <span>Permission 1</span>
-                        <span>Permission 2</span>
-                        <span>Permission 3</span>
-                    </div>
-                    <div class="flex gap-2 h-8">
-                        <div class="flex-1 bg-yellow-400 rounded opacity-50"></div>
-                        <div class="flex-1 bg-yellow-400 rounded opacity-50"></div>
-                        <div class="flex-1 bg-red-500 rounded relative overflow-hidden group cursor-help">
-                            <div class="absolute inset-0 flex items-center justify-center text-white text-xs font-bold opacity-0 group-hover:opacity-100 transition">
-                                -1 JOUR
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-2 text-center text-xs text-red-600 font-bold">
-                        3 Permissions cumulées = 1 Jour de Congé (ou salaire) déduit
-                    </div>
+                    <div class="flex justify-between text-xs font-bold text-slate-400 mb-2"><span>Permission 1</span><span>Permission 2</span><span>Permission 3</span></div>
+                    <div class="flex gap-2 h-8"><div class="flex-1 bg-yellow-400 rounded opacity-50"></div><div class="flex-1 bg-yellow-400 rounded opacity-50"></div><div class="flex-1 bg-red-500 rounded text-center text-white text-xs font-bold leading-8">-1 JOUR</div></div>
                 </div>
             </div>
-
-            <!-- BONUSES: ACQUISITION -->
             <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="bg-green-100 p-2 rounded-lg text-green-600"><i class="fas fa-gift"></i></div>
-                    <h3 class="font-bold text-lg">Acquisition de Bonus</h3>
-                </div>
-                <p class="text-sm text-slate-600 mb-4 text-justify">
-                    Votre solde de congé n'est pas fixe. Il augmente à chaque effort supplémentaire validé par le système.
-                </p>
+                <div class="flex items-center gap-3 mb-4"><div class="bg-green-100 p-2 rounded-lg text-green-600"><i class="fas fa-gift"></i></div><h3 class="font-bold text-lg">Acquisition de Bonus</h3></div>
                 <ul class="space-y-3">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-green-500 mt-1"></i>
-                        <div>
-                            <span class="font-bold text-slate-800">Week-end & Férié</span>
-                            <p class="text-xs text-slate-500">1 Jour travaillé (Dimanche/Férié) = <strong>+1 Jour de Congé</strong> ajouté.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-green-500 mt-1"></i>
-                        <div>
-                            <span class="font-bold text-slate-800">Interventions & Réunions</span>
-                            <p class="text-xs text-slate-500">Interventions hors horaires validées = Bonus (env. 1j tous les 3 événements).</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-check text-green-500 mt-1"></i>
-                        <div>
-                            <span class="font-bold text-slate-800">Base Mensuelle</span>
-                            <p class="text-xs text-slate-500">1.5 Jour acquis automatiquement par mois travaillé.</p>
-                        </div>
-                    </li>
+                    <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><div><span class="font-bold text-slate-800">Week-end & Férié</span><p class="text-xs text-slate-500">+1 Jour de Congé si travaillé.</p></div></li>
+                    <li class="flex items-start gap-3"><i class="fas fa-check text-green-500 mt-1"></i><div><span class="font-bold text-slate-800">Interventions & Réunions</span><p class="text-xs text-slate-500">Bonus si hors horaires (env. 1j/3 évts).</p></div></li>
                 </ul>
             </div>
         </div>
-
-        <!-- Chart Container -->
-        <div class="bg-white p-6 rounded-xl shadow border border-slate-100">
-            <h3 class="font-bold text-lg mb-4 text-center">Simulation : Potentiel de Congés Annuel</h3>
-            <div class="chart-container">
-                <canvas id="bonusChart"></canvas>
-            </div>
-            <p class="text-xs text-center text-slate-400 mt-2">
-                *Estimation basée sur une année typique avec quelques interventions et jours fériés travaillés.
-            </p>
-        </div>
+        <div class="bg-white p-6 rounded-xl shadow border border-slate-100"><h3 class="font-bold text-lg mb-4 text-center">Simulation : Potentiel de Congés Annuel</h3><div class="chart-container"><canvas id="bonusChart"></canvas></div></div>
     </section>
 
     <!-- SECTION NEW: AI ASSISTANT -->
     <section id="ai-assistant" class="bg-gradient-to-r from-slate-900 to-slate-800 py-16 text-white border-t border-slate-700">
         <div class="container mx-auto px-4 max-w-4xl">
-            <div class="flex items-center justify-center gap-3 mb-8">
-                <span class="text-2xl">✨</span>
-                <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-orange-500">
-                    Assistant RH Intelligent
-                </h2>
-                <span class="text-2xl">✨</span>
-            </div>
-            
-            <p class="text-center text-slate-300 mb-8 max-w-2xl mx-auto">
-                Un doute sur une règle ? Besoin d'aide pour rédiger une justification d'absence ? 
-                L'IA Expert Teslago connaît la procédure 001 par cœur.
-            </p>
-
+            <div class="flex items-center justify-center gap-3 mb-8"><span class="text-2xl">✨</span><h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-orange-500">Assistant RH Intelligent</h2><span class="text-2xl">✨</span></div>
+            <p class="text-center text-slate-300 mb-8 max-w-2xl mx-auto">Un doute sur une règle ? L'IA Expert Teslago connaît la procédure 001 par cœur.</p>
             <div class="bg-slate-800 rounded-xl p-6 border border-slate-600 shadow-2xl">
-                <!-- Chat Interface -->
                 <div class="flex flex-col space-y-4">
-                    <!-- Quick Actions -->
                     <div class="flex gap-2 justify-center flex-wrap mb-2">
-                        <button onclick="setPrompt('J\'ai oublié de pointer ce matin, est-ce grave ?')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">
-                            🤔 Oubli de pointage
-                        </button>
-                        <button onclick="setPrompt('Combien de jours de congés je gagne si je travaille dimanche ?')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">
-                            📅 Bonus Dimanche
-                        </button>
-                        <button onclick="setPrompt('Rédige une justification pour un retard de 30min à cause d\'une panne de voiture.')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">
-                            ✍️ Rédiger un justificatif
-                        </button>
+                        <button onclick="setPrompt('J\'ai oublié de pointer ce matin, est-ce grave ?')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">🤔 Oubli de pointage</button>
+                        <button onclick="setPrompt('Combien de jours de congés je gagne si je travaille dimanche ?')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">📅 Bonus Dimanche</button>
+                        <button onclick="setPrompt('Rédige une justification pour un retard de 30min.')" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-full text-xs transition border border-slate-500">✍️ Rédiger un justificatif</button>
                     </div>
-
-                    <!-- Input Area -->
                     <div class="relative">
-                        <textarea id="ai-input" rows="3" 
-                            class="w-full bg-slate-900 border border-slate-600 rounded-lg p-4 text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none resize-none placeholder-slate-500"
-                            placeholder="Posez votre question ou décrivez votre situation..."></textarea>
-                        <button onclick="askGemini()" 
-                            class="absolute bottom-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition shadow-lg flex items-center gap-2">
-                            <span>Envoyer</span> <i class="fas fa-paper-plane"></i>
-                        </button>
+                        <textarea id="ai-input" rows="3" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-4 text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none resize-none placeholder-slate-500" placeholder="Posez votre question..."></textarea>
+                        <button onclick="askGemini()" class="absolute bottom-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition shadow-lg flex items-center gap-2"><span>Envoyer</span> <i class="fas fa-paper-plane"></i></button>
                     </div>
-
-                    <!-- Response Area -->
                     <div id="ai-response-container" class="hidden mt-4">
                         <div class="flex gap-3">
-                            <div class="w-8 h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center">
-                                <i class="fas fa-robot text-white text-sm"></i>
-                            </div>
+                            <div class="w-8 h-8 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center"><i class="fas fa-robot text-white text-sm"></i></div>
                             <div class="flex-1">
                                 <div class="bg-slate-700 rounded-lg rounded-tl-none p-4 text-slate-100 leading-relaxed border border-slate-600 shadow-inner">
                                     <div id="ai-response-text"></div>
-                                    <div id="ai-loading" class="hidden">
-                                        <span class="typing-dot"></span>
-                                        <span class="typing-dot"></span>
-                                        <span class="typing-dot"></span>
-                                    </div>
-                                </div>
-                                <div class="text-xs text-slate-500 mt-2 flex justify-between">
-                                    <span>Réponse basée sur la Procédure RH 001 v2.0</span>
-                                    <span>Propulsé par Gemini ✨</span>
+                                    <div id="ai-loading" class="hidden"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: REPORTS & FAQ -->
-    <section class="bg-slate-50 py-16 border-t border-slate-200">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-2xl font-bold text-slate-900 mb-8 text-center">Comprendre vos Rapports</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="text-orange-500 text-xl mb-3"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <h3 class="font-bold text-lg mb-2">Rapport Mensuel (Paie)</h3>
-                    <p class="text-sm text-slate-600 mb-4">C'est la photo de votre mois. Il sert à calculer votre salaire.</p>
-                    <ul class="text-sm space-y-2 text-slate-500">
-                        <li>• Compare Heures Réelles vs Objectif.</li>
-                        <li>• Déduit les absences non justifiées.</li>
-                        <li>• <strong>Tolérance :</strong> Jusqu'à 4h de retard cumulé sans pénalité financière.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="text-blue-500 text-xl mb-3"><i class="fas fa-piggy-bank"></i></div>
-                    <h3 class="font-bold text-lg mb-2">Tableau Annuel (Congés)</h3>
-                    <p class="text-sm text-slate-600 mb-4">C'est votre "Compte Épargne Temps".</p>
-                    <ul class="text-sm space-y-2 text-slate-500">
-                        <li>• Cumule les 1.5j de base.</li>
-                        <li>• Ajoute tous les bonus (WE, Fériés, Interventions).</li>
-                        <li>• Déduit les congés pris.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- FAQ Accordion -->
-            <div class="mt-12 space-y-4">
-                <details class="bg-white rounded-lg shadow-sm p-4 cursor-pointer group">
-                    <summary class="font-bold text-slate-800 list-none flex justify-between items-center">
-                        J'ai oublié de pointer le matin, que faire ?
-                        <span class="group-open:rotate-180 transition"><i class="fas fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100">
-                        La journée est marquée ABSENCE par défaut. Contactez immédiatement votre manager ou les RH pour une régularisation exceptionnelle. La récurrence sera sanctionnée.
-                    </p>
-                </details>
-
-                <details class="bg-white rounded-lg shadow-sm p-4 cursor-pointer group">
-                    <summary class="font-bold text-slate-800 list-none flex justify-between items-center">
-                        Puis-je pointer "Pause" pour aller déjeuner ?
-                        <span class="group-open:rotate-180 transition"><i class="fas fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100">
-                        <strong>NON.</strong> Le système déduit déjà automatiquement 1 heure pour le déjeuner. Si vous pointez "Pause", le temps sera déduit DEUX FOIS. Utilisez "Pause" uniquement pour les sorties personnelles (banque, café, etc.).
-                    </p>
-                </details>
-
-                <details class="bg-white rounded-lg shadow-sm p-4 cursor-pointer group">
-                    <summary class="font-bold text-slate-800 list-none flex justify-between items-center">
-                        Je suis en mission à Tunis, dois-je pointer ?
-                        <span class="group-open:rotate-180 transition"><i class="fas fa-chevron-down text-slate-400"></i></span>
-                    </summary>
-                    <p class="text-sm text-slate-600 mt-3 pt-3 border-t border-slate-100">
-                        Oui. Même en mission, la géolocalisation validera votre présence sur le site distant. L'ordre de mission justifie le lieu, le pointage justifie les heures.
-                    </p>
-                </details>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
-        <div class="container mx-auto px-4">
-            <p class="mb-2">TESLAGO CONSTRUCTION - DIRECTION RH</p>
-            <p>Application de la procédure v2.0 à compter du 29/12/2025.</p>
-            <p class="mt-4 text-slate-600 text-xs">Pour toute question technique : support@teslago.tn</p>
-        </div>
+        <div class="container mx-auto px-4"><p class="mb-2">TESLAGO CONSTRUCTION - DIRECTION RH</p><p>Application de la procédure v2.0 à compter du 29/12/2025.</p></div>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- GEMINI AI CONFIGURATION ---
-        const apiKey = ""; // La clé est fournie par l'environnement d'exécution
-        const rhContext = `
-            Tu es l'assistant RH expert de Teslago Construction. Ta mission est d'expliquer la "Procédure RH 001 - Gestion du Pointage" aux employés avec bienveillance et précision.
-            
-            Voici les règles strictes de la procédure (Règles Algorithmiques) :
-            1. Matin : Pointer "Prise de Poste" est OBLIGATOIRE dès l'arrivée. Oubli = Absence (non payé).
-            2. Midi : NE JAMAIS pointer "Pause" pour le déjeuner standard. 1h est déduite automatiquement. Pointer "Pause" à midi ferait perdre 2h de salaire.
-            3. Pauses Personnelles : Utiliser "Pause" et "Reprise" pour les sorties hors déjeuner (banque, café, médecin).
-            4. Soir : Pointer "Fin de journée" est OBLIGATOIRE.
-            5. Seuils Critiques (Plein Temps) : 
-               - Moins de 4h travaillées = ABSENCE (0% salaire).
-               - Moins de 6h travaillées = PERMISSION.
-            6. Règle des 3 Permissions : 3 permissions cumulées dans le mois = 1 jour de congé déduit (ou salaire).
-            7. Bonus : Travailler un Dimanche ou un Jour Férié (validé par pointage) ajoute +1 jour au solde de congés.
-            8. Missions : Le pointage est obligatoire même en mission à Tunis ou ailleurs.
-            9. Justification : Si l'utilisateur demande de l'aide pour rédiger un motif, propose un texte court, professionnel et poli.
+        // --- ⚠️ IMPORTANT : REMPLACEZ CI-DESSOUS AVEC VOTRE CLÉ ---
+        const apiKey = "AIzaSyAA427hAPu1h7Ksp8kWpmJKYlR2HVm4Pgw"; 
 
-            Réponds en Français. Sois concis. Utilise des émojis pour rendre la réponse conviviale.
-        `;
+        const rhContext = `Tu es l'assistant RH expert de Teslago Construction. Ta mission est d'expliquer la "Procédure RH 001 - Gestion du Pointage". Règles : Matin "Prise de Poste" OBLIGATOIRE. Midi NE JAMAIS pointer "Pause" (1h déduite auto). Pauses Perso : Uniquement pour sorties hors déjeuner. Soir : "Fin de journée" OBLIGATOIRE. Seuils : <4h = ABSENCE, <6h = PERMISSION. Sanction : 3 permissions = -1 jour congé. Bonus : Dimanche/Férié travaillé = +1 jour congé. Réponds en Français, concis et pro.`;
 
         async function askGemini() {
             const inputField = document.getElementById('ai-input');
@@ -510,151 +232,62 @@
             const responseText = document.getElementById('ai-response-text');
             const loading = document.getElementById('ai-loading');
             const userQuestion = inputField.value.trim();
-
             if (!userQuestion) return;
+            if (apiKey === "VOTRE_CLE_API_ICI" || apiKey === "") { alert("Erreur: Clé API manquante dans le fichier HTML."); return; }
 
-            // UI Updates
             responseContainer.classList.remove('hidden');
             responseText.innerHTML = '';
             loading.classList.remove('hidden');
-            
-            // Construct Payload
+
             const payload = {
-                contents: [{
-                    parts: [{ text: userQuestion }]
-                }],
-                systemInstruction: {
-                    parts: [{ text: rhContext }]
-                }
+                contents: [{ parts: [{ text: userQuestion }] }],
+                systemInstruction: { parts: [{ text: rhContext }] }
             };
 
             try {
-                // Exponential backoff retry logic
-                const maxRetries = 5;
-                let attempt = 0;
-                let result = null;
-
-                while (attempt < maxRetries) {
-                    try {
-                        const response = await fetch(
-                            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
-                            {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(payload)
-                            }
-                        );
-
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        
-                        result = await response.json();
-                        break; // Success
-                    } catch (e) {
-                        attempt++;
-                        if (attempt === maxRetries) throw e;
-                        await new Promise(r => setTimeout(r, Math.pow(2, attempt) * 1000));
-                    }
-                }
-
-                const aiMessage = result.candidates?.[0]?.content?.parts?.[0]?.text || "Désolé, je n'ai pas pu analyser votre demande. Veuillez réessayer.";
-                
-                // Format output (simple markdown to HTML conversion for bolding)
-                const formattedMessage = aiMessage.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
                 loading.classList.add('hidden');
-                responseText.innerHTML = formattedMessage;
-
+                
+                if (result.error) {
+                    responseText.innerHTML = `<span class="text-red-400">Erreur : ${result.error.message}</span>`;
+                } else {
+                    const aiMessage = result.candidates?.[0]?.content?.parts?.[0]?.text || "Pas de réponse.";
+                    responseText.innerHTML = aiMessage.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                }
             } catch (error) {
                 loading.classList.add('hidden');
-                responseText.innerHTML = `<span class="text-red-400"><i class="fas fa-exclamation-triangle"></i> Une erreur est survenue lors de la connexion à l'assistant. Veuillez réessayer plus tard.</span>`;
-                console.error("Gemini Error:", error);
+                responseText.innerHTML = `<span class="text-red-400">Erreur réseau : ${error.message}</span>`;
             }
         }
 
-        function setPrompt(text) {
-            const input = document.getElementById('ai-input');
-            input.value = text;
-            input.focus();
-        }
+        function setPrompt(text) { document.getElementById('ai-input').value = text; document.getElementById('ai-input').focus(); }
 
-        // --- DATA & STATE ---
+        // --- DATA & INTERACTION ---
         const steps = {
-            1: {
-                title: "Matin : Prise de Poste",
-                icon: "fa-sun",
-                color: "text-green-600",
-                bg: "bg-green-50",
-                action: "🟢 PRISE DE POSTE",
-                desc: "À faire impérativement en arrivant. C'est le déclencheur de la paie.",
-                warning: "Oubli = Journée ABSENTE (Non payée)."
-            },
-            2: {
-                title: "Midi : Déjeuner Standard",
-                icon: "fa-utensils",
-                color: "text-orange-600",
-                bg: "bg-orange-50",
-                action: "🚫 NE RIEN CLIQUER",
-                desc: "Une heure est déduite automatiquement de votre temps de présence. Continuez votre journée normalement.",
-                warning: "Si vous cliquez sur Pause, vous perdez du temps doublement !"
-            },
-            3: {
-                title: "Sortie Personnelle",
-                icon: "fa-coffee",
-                color: "text-blue-600",
-                bg: "bg-blue-50",
-                action: "☕ PAUSE puis ▶️ REPRISE",
-                desc: "Pour toute absence personnelle (Banque, Café, Médecin...). Ce temps est déduit de votre salaire.",
-                warning: "Si Pause > 4h et temps total < 4h = Journée Annulée."
-            },
-            4: {
-                title: "Soir : Fin de Journée",
-                icon: "fa-moon",
-                color: "text-red-600",
-                bg: "bg-red-50",
-                action: "🔴 FIN DE JOURNÉE",
-                desc: "Arrête le compteur. Permet de calculer les heures supplémentaires éventuelles.",
-                warning: "Sans ce clic, la journée est en ERREUR."
-            }
+            1: { title: "Matin : Prise de Poste", icon: "fa-sun", color: "text-green-600", bg: "bg-green-50", action: "🟢 PRISE DE POSTE", desc: "À faire impérativement en arrivant.", warning: "Oubli = Journée ABSENTE (Non payée)." },
+            2: { title: "Midi : Déjeuner Standard", icon: "fa-utensils", color: "text-orange-600", bg: "bg-orange-50", action: "🚫 NE RIEN CLIQUER", desc: "1h déduite automatiquement.", warning: "Ne pointez pas Pause pour manger !" },
+            3: { title: "Sortie Personnelle", icon: "fa-coffee", color: "text-blue-600", bg: "bg-blue-50", action: "☕ PAUSE puis ▶️ REPRISE", desc: "Pour absences personnelles (Banque, etc).", warning: "Déduit du salaire." },
+            4: { title: "Soir : Fin de Journée", icon: "fa-moon", color: "text-red-600", bg: "bg-red-50", action: "🔴 FIN DE JOURNÉE", desc: "Arrête le compteur.", warning: "Sans ce clic, journée en ERREUR." }
         };
 
-        // --- STEP INTERACTION ---
         function showStep(id) {
             const data = steps[id];
             const container = document.getElementById('step-detail-container');
-            
-            // Remove active class from all steps
             document.querySelectorAll('.step-card').forEach(el => el.classList.remove('active-step', 'border-l-slate-900'));
-            // Add active class to clicked step
             document.querySelectorAll('.step-card')[id-1].classList.add('active-step', 'border-l-slate-900');
-
-            container.innerHTML = `
-                <div class="text-center animate-fade-in">
-                    <div class="w-16 h-16 mx-auto rounded-full ${data.bg} ${data.color} flex items-center justify-center text-2xl mb-4">
-                        <i class="fas ${data.icon}"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-2">${data.title}</h3>
-                    <div class="inline-block px-4 py-2 bg-slate-900 text-white font-mono rounded mb-6 shadow-lg transform scale-105">
-                        Action : ${data.action}
-                    </div>
-                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                        ${data.desc}
-                    </p>
-                    <div class="bg-red-50 border-l-4 border-red-500 p-4 text-left rounded">
-                        <p class="text-red-700 font-bold text-sm"><i class="fas fa-exclamation-triangle mr-2"></i>ATTENTION</p>
-                        <p class="text-red-600 text-sm mt-1">${data.warning}</p>
-                    </div>
-                </div>
-            `;
+            container.innerHTML = `<div class="text-center animate-fade-in"><div class="w-16 h-16 mx-auto rounded-full ${data.bg} ${data.color} flex items-center justify-center text-2xl mb-4"><i class="fas ${data.icon}"></i></div><h3 class="text-2xl font-bold text-slate-900 mb-2">${data.title}</h3><div class="inline-block px-4 py-2 bg-slate-900 text-white font-mono rounded mb-6 shadow-lg transform scale-105">Action : ${data.action}</div><p class="text-lg text-slate-600 mb-6 leading-relaxed">${data.desc}</p><div class="bg-red-50 border-l-4 border-red-500 p-4 text-left rounded"><p class="text-red-700 font-bold text-sm"><i class="fas fa-exclamation-triangle mr-2"></i>ATTENTION</p><p class="text-red-600 text-sm mt-1">${data.warning}</p></div></div>`;
         }
 
-        // --- SIMULATOR LOGIC ---
+        // --- SIMULATOR ---
         function updateSimulation() {
             const hours = parseFloat(document.getElementById('sim-hours').value);
             const regime = document.getElementById('sim-regime').value;
-            const hasPause = document.getElementById('sim-pause-perso').checked;
             const isWeekend = document.getElementById('sim-weekend').checked;
-
-            // UI Elements
             const displayHours = document.getElementById('sim-hours-display');
             const icon = document.getElementById('sim-icon');
             const title = document.getElementById('sim-status-title');
@@ -665,148 +298,30 @@
             const badge = document.getElementById('sim-result-badge');
 
             displayHours.innerText = hours;
-
-            let status = "OK"; // OK, PERM, ABS, BONUS
-            let message = "";
             let colorClass = "text-green-500";
-            
-            // Logic Core from Script
+
             if (isWeekend) {
-                // Weekend Logic
-                if (hours > 0) {
-                    status = "BONUS";
-                    colorClass = "text-purple-500";
-                    title.innerText = "JOUR BONUS";
-                    desc.innerText = "Travail le Dimanche/Férié validé.";
-                    qualif.innerText = "BONUS WE";
-                    pay.innerText = "Heures Payées";
-                    bonus.innerText = "+1 Jour Congé";
-                    icon.innerHTML = '<i class="fas fa-gift"></i>';
-                    badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700";
-                } else {
-                    status = "ABS";
-                    colorClass = "text-slate-400";
-                    title.innerText = "Repos";
-                    desc.innerText = "Aucun pointage.";
-                    qualif.innerText = "-";
-                    pay.innerText = "-";
-                    bonus.innerText = "-";
-                    icon.innerHTML = '<i class="fas fa-bed"></i>';
-                }
+                if (hours > 0) { colorClass = "text-purple-500"; title.innerText = "JOUR BONUS"; desc.innerText = "Travail le Dimanche/Férié validé."; qualif.innerText = "BONUS WE"; pay.innerText = "Heures Payées"; bonus.innerText = "+1 Jour Congé"; icon.innerHTML = '<i class="fas fa-gift"></i>'; badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700"; }
+                else { colorClass = "text-slate-400"; title.innerText = "Repos"; desc.innerText = "Aucun pointage."; qualif.innerText = "-"; pay.innerText = "-"; bonus.innerText = "-"; icon.innerHTML = '<i class="fas fa-bed"></i>'; }
             } else {
-                // Weekday Logic
-                if (regime === "part") {
-                    // Part Time
-                    if (hours < 4) {
-                        status = "ABS";
-                        colorClass = "text-red-500";
-                        title.innerText = "ABSENCE";
-                        desc.innerText = "Moins de 4h travaillées (Mi-temps strict).";
-                        qualif.innerText = "ABSENCE";
-                        pay.innerText = "Non Payé (0%)";
-                        bonus.innerText = "-";
-                        icon.innerHTML = '<i class="fas fa-times-circle"></i>';
-                        badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-700";
-                    } else {
-                        status = "OK";
-                        colorClass = "text-green-500";
-                        title.innerText = "VALIDÉ";
-                        desc.innerText = "Objectif Mi-temps atteint.";
-                        qualif.innerText = "PRÉSENCE";
-                        pay.innerText = "Payé (100%)";
-                        bonus.innerText = "-";
-                        icon.innerHTML = '<i class="fas fa-check-circle"></i>';
-                        badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700";
-                    }
-                } else {
-                    // Full Time
-                    if (hours < 4) {
-                        status = "ABS";
-                        colorClass = "text-red-500";
-                        title.innerText = "ABSENCE";
-                        desc.innerText = "Journée inférieure à 4h. Non comptabilisée.";
-                        qualif.innerText = "ABSENCE";
-                        pay.innerText = "Non Payé (0%)";
-                        bonus.innerText = "-";
-                        icon.innerHTML = '<i class="fas fa-times-circle"></i>';
-                        badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-700";
-                    } else if (hours < 6) {
-                        status = "PERM";
-                        colorClass = "text-yellow-500";
-                        title.innerText = "PERMISSION AUTO";
-                        desc.innerText = "Entre 4h et 6h : Considéré comme sortie autorisée.";
-                        qualif.innerText = "PERMISSION";
-                        pay.innerText = "Payé (Décompte Perm)";
-                        bonus.innerText = "Attention (Règle des 3)";
-                        icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
-                        badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700";
-                    } else {
-                        status = "OK";
-                        colorClass = "text-green-500";
-                        title.innerText = "VALIDÉ";
-                        desc.innerText = hasPause ? "Objectif atteint malgré la pause." : "Objectif atteint.";
-                        qualif.innerText = "PRÉSENCE";
-                        pay.innerText = "Payé (100%)";
-                        bonus.innerText = "Acquisition normale";
-                        icon.innerHTML = '<i class="fas fa-check-circle"></i>';
-                        badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700";
-                    }
-                }
+                if (hours < 4) { colorClass = "text-red-500"; title.innerText = "ABSENCE"; desc.innerText = "Moins de 4h travaillées."; qualif.innerText = "ABSENCE"; pay.innerText = "Non Payé (0%)"; bonus.innerText = "-"; icon.innerHTML = '<i class="fas fa-times-circle"></i>'; badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-700"; }
+                else if (regime === 'full' && hours < 6) { colorClass = "text-yellow-500"; title.innerText = "PERMISSION AUTO"; desc.innerText = "Entre 4h et 6h."; qualif.innerText = "PERMISSION"; pay.innerText = "Payé"; bonus.innerText = "Attention (Règle des 3)"; icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>'; badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-yellow-100 text-yellow-700"; }
+                else { colorClass = "text-green-500"; title.innerText = "VALIDÉ"; desc.innerText = "Objectif atteint."; qualif.innerText = "PRÉSENCE"; pay.innerText = "Payé (100%)"; bonus.innerText = "Acquisition normale"; icon.innerHTML = '<i class="fas fa-check-circle"></i>'; badge.className = "absolute top-4 right-4 text-xs font-bold px-3 py-1 rounded-full bg-green-100 text-green-700"; }
             }
-            
-            // Icon animation refresh
             icon.className = `text-6xl mb-4 transition-all duration-300 transform scale-100 ${colorClass}`;
         }
 
-
-        // --- CHART JS ---
         document.addEventListener('DOMContentLoaded', function() {
-            // Initial render
             showStep(1);
             updateSimulation();
-
-            // Chart
             const ctx = document.getElementById('bonusChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Base Annuelle', 'Bonus WE Est.', 'Bonus Interv. Est.', 'Total Potentiel'],
-                    datasets: [{
-                        label: 'Jours de Congés',
-                        data: [18, 5, 3, 26], // Example values: 1.5*12=18, +5 WE, +3 Interv
-                        backgroundColor: [
-                            '#3b82f6', // Blue
-                            '#8b5cf6', // Purple
-                            '#10b981', // Green
-                            '#f97316'  // Orange (Total)
-                        ],
-                        borderWidth: 0,
-                        borderRadius: 4
-                    }]
+                    datasets: [{ label: 'Jours de Congés', data: [18, 5, 3, 26], backgroundColor: ['#3b82f6', '#8b5cf6', '#10b981', '#f97316'], borderWidth: 0, borderRadius: 4 }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.raw + ' Jours';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: '#f1f5f9' }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } } }
             });
         });
     </script>
